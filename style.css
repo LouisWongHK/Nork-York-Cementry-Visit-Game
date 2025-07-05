@@ -1,0 +1,360 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Body and background */
+body {
+    font-family: 'Georgia', serif;
+    background: url('https://i.imgur.com/njPQNhB.jpg') no-repeat center center fixed; /* Example background image */
+    background-size: cover;
+    color: #d6c6aa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    touch-action: manipulation; /* Prevents default touch behaviors like pinch-to-zoom */
+    background-color: #1a1f18; /* Dark military green background */
+}
+
+/* Game container */
+#game-container {
+    display: none; /* Hidden by default, shown by JS */
+    position: relative;
+    width: 100%; /* Changed to 100% for mobile responsiveness */
+    max-width: 700px; /* Maximum width for larger screens */
+    background-color: #2e2e2e; /* Dark gray for a gritty WWII feel */
+    border: 2px solid #704214; /* Brown border for a wooden frame look */
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    padding: 20px; /* Adjusted padding for overall layout */
+    text-align: center;
+    min-height: 400px; /* Minimum height to prevent collapse */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#game-container.visible {
+    display: flex; /* Show when visible class is added */
+}
+
+/* Start Screen Styles */
+#start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+#start-screen h1 {
+    font-family: 'Staatliches', sans-serif;
+    font-size: 3em;
+    color: #ffd700; /* Gold color for title */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#start-screen p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #d6c6aa;
+    line-height: 1.5;
+}
+
+#start-game-btn {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    background-color: #704214; /* Brown button */
+    color: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-family: 'Staatliches', sans-serif;
+    text-transform: uppercase;
+}
+
+#start-game-btn:hover {
+    background-color: #a67c52;
+    color: #1a1a1a;
+    transform: scale(1.05);
+}
+
+#start-game-btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Quiz UI Styles */
+#quiz-ui {
+    display: none; /* Hidden by default, shown by JS */
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#question-area {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(46, 46, 46, 0.8);
+    border-radius: 8px;
+    border: 1px solid #704214;
+    width: 100%;
+}
+
+#question-text {
+    font-size: 1.4em;
+    color: #ffd700;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+#options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.option-btn {
+    padding: 12px 20px;
+    font-size: 1.1em;
+    background-color: #4a4a4a;
+    color: #f5f5f5;
+    border: 1px solid #2f2f2f;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    font-family: 'Arial', sans-serif;
+}
+
+.option-btn:hover {
+    background-color: #5a5a5a;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.option-btn.correct {
+    background-color: #28a745; /* Green for correct */
+    border-color: #1e7e34;
+    color: #fff;
+}
+
+.option-btn.incorrect {
+    background-color: #dc3545; /* Red for incorrect */
+    border-color: #bd2130;
+    color: #fff;
+}
+
+.option-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+#feedback-message {
+    margin-top: 15px;
+    font-size: 1.1em;
+    color: #ffd700;
+    min-height: 30px; /* Reserve space */
+}
+
+#score-display {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #d6c6aa;
+    margin-top: 20px;
+}
+
+#next-question-btn {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #704214;
+    color: #f5f5f5;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    font-family: 'Staatliches', sans-serif;
+    text-transform: uppercase;
+}
+
+#next-question-btn:hover {
+    background-color: #a67c52;
+    color: #1a1a1a;
+    transform: scale(1.05);
+}
+
+#next-question-btn:active {
+    transform: scale(0.98);
+}
+
+/* Event Dialog Styles (from user prompt) */
+.event-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none; /* Hidden by default, will be shown via JS */
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.dialog-content {
+    position: relative; /* Changed to relative for better positioning within fixed dialog */
+    width: 90%; /* Adjusted for mobile */
+    max-width: 800px; /* Reduced max-width for better fit */
+    height: 70%; /* Adjusted for mobile */
+    max-height: 600px;
+    background: #2f3d2a;
+    border: 5px solid #1a1f18;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    overflow: hidden; /* Ensure content stays within bounds */
+}
+
+.dialog-map {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid #1a1f18;
+}
+
+.map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.3) opacity(0.8);
+}
+
+.dialog-portrait {
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    width: 150px; /* Adjusted for mobile */
+    height: 200px; /* Adjusted for mobile */
+    background: #1a1f18;
+    border: 3px solid #4a4a4a;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.portrait-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dialog-message {
+    position: absolute;
+    bottom: 10%;
+    left: 2%;
+    right: 2%; /* Adjusted to take more width */
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif;
+    font-size: 1em; /* Adjusted for mobile */
+    line-height: 1.5;
+    max-height: 50%; /* Prevent message from overflowing */
+    overflow-y: auto; /* Allow scrolling for long messages */
+}
+
+.dialog-hint {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    right: 2%;
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffd700;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+.dialog-btn {
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+    padding: 10px 20px;
+    background: #4a4a4a;
+    color: #fff;
+    border: 2px solid #2f2f2f;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Staatliches', sans-serif;
+    font-size: 1em; /* Adjusted for mobile */
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+.dialog-btn:hover {
+    background: #5a5a5a;
+}
+
+/* End Game Screen */
+#end-screen {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+#end-screen h2 {
+    font-family: 'Staatliches', sans-serif;
+    font-size: 2.5em;
+    color: #ffd700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#final-score {
+    font-size: 1.8em;
+    color: #d6c6aa;
+    margin-bottom: 30px;
+}
+
+#play-again-btn {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    background-color: #704214;
+    color: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-family: 'Staatliches', sans-serif;
+    text-transform: uppercase;
+}
+
+#play-again-btn:hover {

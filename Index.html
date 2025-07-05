@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canadian VC Heroes Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Arial&family=Georgia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="start-screen">
+            <h1>Canadian VC Heroes Quiz</h1>
+            <p>Welcome, participant! This quiz will test your knowledge of Canadian Victoria Cross recipients. Many answers can be found by exploring the memorials and graves in the North York Cemetery area. Pay special attention to the hero who died in Hong Kong.</p>
+            <button id="start-game-btn">Start Quiz</button>
+        </div>
+
+        <div id="quiz-ui">
+            <div id="question-area">
+                <p id="question-text"></p>
+                <div id="options-container">
+                    </div>
+                <p id="feedback-message"></p>
+            </div>
+            <p id="score-display">Score: 0</p>
+            <button id="next-question-btn">Next Question</button>
+        </div>
+
+        <div id="end-screen">
+            <h2>Quiz Complete!</h2>
+            <p id="final-score"></p>
+            <button id="play-again-btn">Play Again</button>
+        </div>
+    </div>
+
+    <div id="event-dialog" class="event-dialog">
+        <div class="dialog-overlay"></div>
+        <div class="dialog-content">
+            <div class="dialog-map">
+                <img id="dialog-map-image" class="map-image" src="" alt="Map related to hero">
+                <div class="dialog-portrait">
+                    <img id="dialog-portrait-image" class="portrait-image" src="" alt="Hero Portrait">
+                </div>
+                <div class="dialog-hint">
+                    <p><strong>Cemetery Hint:</strong> <span id="dialog-cemetery-hint"></span></p>
+                </div>
+            </div>
+            <div class="dialog-message">
+                <p id="dialog-text"></p>
+                <button id="dialog-close-btn" class="dialog-btn">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
